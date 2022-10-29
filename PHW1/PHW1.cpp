@@ -2,6 +2,8 @@
 //
 
 #include <iostream>
+#include <chrono>
+#include <iomanip>
 
 using namespace std;
 
@@ -95,6 +97,8 @@ int main()
 {
 	srand(time(0));
 
+	chrono::high_resolution_clock clock;
+
 	//FillArray(arr_g, N);
 
 	//BubbleSort(arr_g, N);
@@ -102,8 +106,17 @@ int main()
 	//InsertionSort(arr_g, N);
 
 	//PrintArray(arr_g, N);
+
+	auto t1 = clock.now();
 	Sieve(arr_g, N);
+	auto t2 = clock.now();
+
 	PrintPrimes(arr_g, N);
+
+	chrono::duration<double> duration = t2 - t1;
+
+	std::cout << std::fixed << std::setprecision(10);
+	cout << duration.count() << endl;
 
 
 
